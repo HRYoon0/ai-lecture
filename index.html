@@ -128,7 +128,7 @@ const slides=[...stage.querySelectorAll('.slide')];
 let idx=0,timers=[],t0=0;
 function clear(){timers.forEach(clearTimeout);timers=[]}
 
-const FILE=location.protocol==='file:';
+const FILE=(()=>{if(location.protocol==='file:')return true;try{return window.self===window.top}catch(e){return false}})();
 const PAGE=[39,254,1842,786];
 function place(lv){const sl=lv.closest('.slide');const big=sl.classList.contains('on');
  const [x,y,w,h]=big?PAGE:sl.dataset.box.split(',').map(Number);
